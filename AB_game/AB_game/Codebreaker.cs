@@ -21,5 +21,25 @@ namespace AB_game
         {
             //TODO: Runs logic for checking code with input in richTextBoxUserIn
         }
+
+        private void CBContextStrip_Opening(object sender, CancelEventArgs e)
+        {
+            //Clone of the login within the buttons themselves
+        }
+
+        private void CBMenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            //Clone of the login within the Guess Button itself
+        }
+
+        private void exitToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
