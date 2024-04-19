@@ -30,7 +30,7 @@ namespace AB_game
                 {
                     userGuess = ParsedVal2;
                     tries++;
-                    if(tries == 7 && usercodeAsInt != userGuess)
+                    if (tries == 7 && usercodeAsInt != userGuess)
                     {
                         MessageBox.Show("Thats it! Out of tries!");
                         Application.Exit();
@@ -74,7 +74,7 @@ namespace AB_game
                 {
                     A++;
                 }
-                else if (UserGuessArray[i].Contains(UserCodeArray[i]))
+                else if (UserGuessArray.Contains(UserCodeArray[i]) && UserGuessArray[i] != UserCodeArray[i])
                 {
                     B++;
                 }
