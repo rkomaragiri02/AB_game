@@ -28,5 +28,39 @@ namespace AB_game
             Form codemakerForm = new Codemaker();
             codemakerForm.ShowDialog();
         }
+
+        private void codemakerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form codemakerForm = new Codemaker();
+            codemakerForm.ShowDialog();
+        }
+
+        private void codebreakerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form codebreakerForm = new Codebreaker();
+            codebreakerForm.ShowDialog();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void codemakerToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Form codemakerForm = new Codemaker();
+            codemakerForm.ShowDialog();
+        }
+
+        private void codebreakerToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Form codebreakerForm = new Codebreaker();
+            codebreakerForm.ShowDialog();
+        }
+
+        private void exitToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

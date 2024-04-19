@@ -7,11 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.Design;
 
 namespace AB_game
 {
     public partial class Codemaker : Form
-    {
+    {      
         public int usercode;
         public Codemaker()
         {
@@ -22,19 +23,41 @@ namespace AB_game
         {
             if (int.TryParse(textBoxCodeIn.Text, out int ParsedVal))
             {
-                usercode = ParsedVal;
+                if (textBoxCodeIn.Text.Length < 4)
+                {
+                    MessageBox.Show("The code must be 4 digits");
+                }
+                else
+                {
+                    usercode = ParsedVal;
+                    Codebreaker codebreaker = new Codebreaker();
+                    codebreaker.Tag = usercode;
+                    codebreaker.ShowDialog();
+                }
+                
             }
             else
             {
-                MessageBox.Show("Enter an integer value");
-            }
-            
+                MessageBox.Show("Enter only integer values");
+            }            
         }
-       
+
         private void btnRandomise_Click(object sender, EventArgs e)
         {
-            //TODO: Sets random code to break. Check that code is a valid integer
+            Random num = new Random();
+            int[] digits = new int[4];
 
+            for (int i = 0; i < 4; i++)
+            {   
+                int UniqueDigit = num.Next(0, 10);
+                while (digits.Contains(UniqueDigit))
+                {
+                    UniqueDigit = num.Next(0, 10);
+                }
+                digits[i] = UniqueDigit;
+            }
+            textBoxCodeIn.Text = textBoxCodeIn.Text = string.Join("", digits);
+            usercode = Convert.ToInt32(string.Join("", digits));
         }
 
         private void textBoxCodeIn_TextChanged(object sender, EventArgs e)
@@ -49,7 +72,20 @@ namespace AB_game
 
         private void randomizeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Clone of Randomize Button logic
+            Random num = new Random();
+            int[] digits = new int[4];
+
+            for (int i = 0; i < 4; i++)
+            {
+                int UniqueDigit = num.Next(0, 10);
+                while (digits.Contains(UniqueDigit))
+                {
+                    UniqueDigit = num.Next(0, 10);
+                }
+                digits[i] = UniqueDigit;
+            }
+            textBoxCodeIn.Text = textBoxCodeIn.Text = string.Join("", digits);
+            usercode = Convert.ToInt32(string.Join("", digits));
         }
 
         private void exitToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -64,7 +100,20 @@ namespace AB_game
 
         private void randomiseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Clone of Randomise button logic
+            Random num = new Random();
+            int[] digits = new int[4];
+
+            for (int i = 0; i < 4; i++)
+            {
+                int UniqueDigit = num.Next(0, 10);
+                while (digits.Contains(UniqueDigit))
+                {
+                    UniqueDigit = num.Next(0, 10);
+                }
+                digits[i] = UniqueDigit;
+            }
+            textBoxCodeIn.Text = textBoxCodeIn.Text = string.Join("", digits);
+            usercode = Convert.ToInt32(string.Join("", digits));
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)

@@ -16,15 +16,74 @@ namespace AB_game
         {
             InitializeComponent();
         }
+        public static int userGuess;
+        int tries = 0;
 
         private void btnGuess_Click(object sender, EventArgs e)
+
         {
-            //TODO: Runs logic for checking code with input in richTextBoxUserIn
+            int usercodeAsInt = (int)this.Tag;
+
+            if (int.TryParse(richTextBoxUserIn.Text, out int ParsedVal2))
+            {
+                if (ParsedVal2 >= 1000 && ParsedVal2 <= 9999)
+                {
+                    userGuess = ParsedVal2;
+                    tries++;
+                    if(tries == 7 && usercodeAsInt != userGuess)
+                    {
+                        MessageBox.Show("Thats it! Out of tries!");
+                        Application.Exit();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("You must enter 4 digits, try again");
+                    return;
+                }
+            }
+
+            else
+            {
+                MessageBox.Show("Your guess must be integers, try again");
+                return;
+            }
+
+            Compare();
         }
 
+        private void Compare()
+        {
+            int usercodeAsInt = (int)this.Tag;
+            //MessageBox.Show($"The user guess: {userGuess}");//DEBUG
+            //MessageBox.Show($"The user code: {usercodeAsInt}");//DEBUG
+            int A = 0;
+            int B = 0;
+
+            string userGuessAsString = userGuess.ToString();
+            string[] UserGuessArray = userGuessAsString.Select(c => c.ToString()).ToArray();
+
+            string usercodeAsString = usercodeAsInt.ToString();
+            string[] UserCodeArray = usercodeAsString.Select(c => c.ToString()).ToArray();
+
+            //MessageBox.Show($"UserGuessArray Length: {UserGuessArray.Length}, UserCodeArray Length: {UserCodeArray.Length}");
+
+            for (int i = 0; i < 4; i++)
+            {
+                if (UserGuessArray[i] == UserCodeArray[i])
+                {
+                    A++;
+                }
+                else if (UserGuessArray[i].Contains(UserCodeArray[i]))
+                {
+                    B++;
+                }
+            }
+            MessageBox.Show($"{A}A{B}B");
+        }
         private void CBContextStrip_Opening(object sender, CancelEventArgs e)
         {
-            //Clone of the login within the buttons themselves
+            //Clone of the logic within the Guess button itself
         }
 
         private void CBMenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)

@@ -34,11 +34,11 @@
             btnSetCode = new Button();
             btnRandomise = new Button();
             CMContextStrip = new ContextMenuStrip(components);
-            CMMenuStrip = new MenuStrip();
             actionsToolStripMenuItem = new ToolStripMenuItem();
             setCodeToolStripMenuItem = new ToolStripMenuItem();
             randomiseToolStripMenuItem = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
+            CMMenuStrip = new MenuStrip();
             actionsToolStripMenuItem1 = new ToolStripMenuItem();
             setCodeToolStripMenuItem1 = new ToolStripMenuItem();
             randomizeToolStripMenuItem = new ToolStripMenuItem();
@@ -60,6 +60,7 @@
             // textBoxCodeIn
             // 
             textBoxCodeIn.Location = new Point(12, 106);
+            textBoxCodeIn.MaxLength = 4;
             textBoxCodeIn.Name = "textBoxCodeIn";
             textBoxCodeIn.Size = new Size(125, 27);
             textBoxCodeIn.TabIndex = 1;
@@ -90,7 +91,35 @@
             CMContextStrip.ImageScalingSize = new Size(20, 20);
             CMContextStrip.Items.AddRange(new ToolStripItem[] { actionsToolStripMenuItem });
             CMContextStrip.Name = "CMContextStrip";
-            CMContextStrip.Size = new Size(211, 56);
+            CMContextStrip.Size = new Size(128, 28);
+            // 
+            // actionsToolStripMenuItem
+            // 
+            actionsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { setCodeToolStripMenuItem, randomiseToolStripMenuItem, exitToolStripMenuItem });
+            actionsToolStripMenuItem.Name = "actionsToolStripMenuItem";
+            actionsToolStripMenuItem.Size = new Size(127, 24);
+            actionsToolStripMenuItem.Text = "Actions";
+            // 
+            // setCodeToolStripMenuItem
+            // 
+            setCodeToolStripMenuItem.Name = "setCodeToolStripMenuItem";
+            setCodeToolStripMenuItem.Size = new Size(166, 26);
+            setCodeToolStripMenuItem.Text = "Set Code";
+            setCodeToolStripMenuItem.Click += setCodeToolStripMenuItem_Click;
+            // 
+            // randomiseToolStripMenuItem
+            // 
+            randomiseToolStripMenuItem.Name = "randomiseToolStripMenuItem";
+            randomiseToolStripMenuItem.Size = new Size(166, 26);
+            randomiseToolStripMenuItem.Text = "Randomise";
+            randomiseToolStripMenuItem.Click += randomiseToolStripMenuItem_Click;
+            // 
+            // exitToolStripMenuItem
+            // 
+            exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            exitToolStripMenuItem.Size = new Size(166, 26);
+            exitToolStripMenuItem.Text = "Exit";
+            exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
             // CMMenuStrip
             // 
@@ -102,34 +131,6 @@
             CMMenuStrip.TabIndex = 5;
             CMMenuStrip.Text = "menuStrip1";
             // 
-            // actionsToolStripMenuItem
-            // 
-            actionsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { setCodeToolStripMenuItem, randomiseToolStripMenuItem, exitToolStripMenuItem });
-            actionsToolStripMenuItem.Name = "actionsToolStripMenuItem";
-            actionsToolStripMenuItem.Size = new Size(210, 24);
-            actionsToolStripMenuItem.Text = "Actions";
-            // 
-            // setCodeToolStripMenuItem
-            // 
-            setCodeToolStripMenuItem.Name = "setCodeToolStripMenuItem";
-            setCodeToolStripMenuItem.Size = new Size(224, 26);
-            setCodeToolStripMenuItem.Text = "Set Code";
-            setCodeToolStripMenuItem.Click += setCodeToolStripMenuItem_Click;
-            // 
-            // randomiseToolStripMenuItem
-            // 
-            randomiseToolStripMenuItem.Name = "randomiseToolStripMenuItem";
-            randomiseToolStripMenuItem.Size = new Size(224, 26);
-            randomiseToolStripMenuItem.Text = "Randomise";
-            randomiseToolStripMenuItem.Click += randomiseToolStripMenuItem_Click;
-            // 
-            // exitToolStripMenuItem
-            // 
-            exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(224, 26);
-            exitToolStripMenuItem.Text = "Exit";
-            exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
-            // 
             // actionsToolStripMenuItem1
             // 
             actionsToolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { setCodeToolStripMenuItem1, randomizeToolStripMenuItem, exitToolStripMenuItem1 });
@@ -140,21 +141,21 @@
             // setCodeToolStripMenuItem1
             // 
             setCodeToolStripMenuItem1.Name = "setCodeToolStripMenuItem1";
-            setCodeToolStripMenuItem1.Size = new Size(224, 26);
+            setCodeToolStripMenuItem1.Size = new Size(167, 26);
             setCodeToolStripMenuItem1.Text = "Set Code";
             setCodeToolStripMenuItem1.Click += setCodeToolStripMenuItem1_Click;
             // 
             // randomizeToolStripMenuItem
             // 
             randomizeToolStripMenuItem.Name = "randomizeToolStripMenuItem";
-            randomizeToolStripMenuItem.Size = new Size(224, 26);
+            randomizeToolStripMenuItem.Size = new Size(167, 26);
             randomizeToolStripMenuItem.Text = "Randomize";
             randomizeToolStripMenuItem.Click += randomizeToolStripMenuItem_Click;
             // 
             // exitToolStripMenuItem1
             // 
             exitToolStripMenuItem1.Name = "exitToolStripMenuItem1";
-            exitToolStripMenuItem1.Size = new Size(224, 26);
+            exitToolStripMenuItem1.Size = new Size(167, 26);
             exitToolStripMenuItem1.Text = "Exit";
             exitToolStripMenuItem1.Click += exitToolStripMenuItem1_Click;
             // 

@@ -28,17 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
             btnCodemaker = new Button();
             btnCodebreaker = new Button();
-            menuStrip1 = new MenuStrip();
+            WelcMenuStrip = new MenuStrip();
             runToolStripMenuItem = new ToolStripMenuItem();
             codemakerToolStripMenuItem = new ToolStripMenuItem();
             codebreakerToolStripMenuItem = new ToolStripMenuItem();
-            menuStrip1.SuspendLayout();
+            exitToolStripMenuItem = new ToolStripMenuItem();
+            WelcContMenuStrip = new ContextMenuStrip(components);
+            codemakerToolStripMenuItem1 = new ToolStripMenuItem();
+            codebreakerToolStripMenuItem1 = new ToolStripMenuItem();
+            exitToolStripMenuItem1 = new ToolStripMenuItem();
+            WelcMenuStrip.SuspendLayout();
+            WelcContMenuStrip.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -90,6 +97,7 @@
             // 
             // btnCodebreaker
             // 
+            btnCodebreaker.Enabled = false;
             btnCodebreaker.Location = new Point(370, 235);
             btnCodebreaker.Name = "btnCodebreaker";
             btnCodebreaker.Size = new Size(149, 64);
@@ -98,15 +106,15 @@
             btnCodebreaker.UseVisualStyleBackColor = true;
             btnCodebreaker.Click += btnCodebreaker_Click;
             // 
-            // menuStrip1
+            // WelcMenuStrip
             // 
-            menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { runToolStripMenuItem });
-            menuStrip1.Location = new Point(0, 0);
-            menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(564, 28);
-            menuStrip1.TabIndex = 6;
-            menuStrip1.Text = "menuStrip1";
+            WelcMenuStrip.ImageScalingSize = new Size(20, 20);
+            WelcMenuStrip.Items.AddRange(new ToolStripItem[] { runToolStripMenuItem, exitToolStripMenuItem });
+            WelcMenuStrip.Location = new Point(0, 0);
+            WelcMenuStrip.Name = "WelcMenuStrip";
+            WelcMenuStrip.Size = new Size(564, 28);
+            WelcMenuStrip.TabIndex = 6;
+            WelcMenuStrip.Text = "menuStrip1";
             // 
             // runToolStripMenuItem
             // 
@@ -118,32 +126,71 @@
             // codemakerToolStripMenuItem
             // 
             codemakerToolStripMenuItem.Name = "codemakerToolStripMenuItem";
-            codemakerToolStripMenuItem.Size = new Size(224, 26);
+            codemakerToolStripMenuItem.Size = new Size(177, 26);
             codemakerToolStripMenuItem.Text = "Codemaker";
+            codemakerToolStripMenuItem.Click += codemakerToolStripMenuItem_Click;
             // 
             // codebreakerToolStripMenuItem
             // 
             codebreakerToolStripMenuItem.Name = "codebreakerToolStripMenuItem";
-            codebreakerToolStripMenuItem.Size = new Size(224, 26);
+            codebreakerToolStripMenuItem.Size = new Size(177, 26);
             codebreakerToolStripMenuItem.Text = "Codebreaker";
+            codebreakerToolStripMenuItem.Click += codebreakerToolStripMenuItem_Click;
+            // 
+            // exitToolStripMenuItem
+            // 
+            exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            exitToolStripMenuItem.Size = new Size(47, 24);
+            exitToolStripMenuItem.Text = "Exit";
+            exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
+            // 
+            // WelcContMenuStrip
+            // 
+            WelcContMenuStrip.ImageScalingSize = new Size(20, 20);
+            WelcContMenuStrip.Items.AddRange(new ToolStripItem[] { codemakerToolStripMenuItem1, codebreakerToolStripMenuItem1, exitToolStripMenuItem1 });
+            WelcContMenuStrip.Name = "WelcContMenuStrip";
+            WelcContMenuStrip.Size = new Size(164, 76);
+            // 
+            // codemakerToolStripMenuItem1
+            // 
+            codemakerToolStripMenuItem1.Name = "codemakerToolStripMenuItem1";
+            codemakerToolStripMenuItem1.Size = new Size(163, 24);
+            codemakerToolStripMenuItem1.Text = "Codemaker";
+            codemakerToolStripMenuItem1.Click += codemakerToolStripMenuItem1_Click;
+            // 
+            // codebreakerToolStripMenuItem1
+            // 
+            codebreakerToolStripMenuItem1.Name = "codebreakerToolStripMenuItem1";
+            codebreakerToolStripMenuItem1.Size = new Size(163, 24);
+            codebreakerToolStripMenuItem1.Text = "Codebreaker";
+            codebreakerToolStripMenuItem1.Click += codebreakerToolStripMenuItem1_Click;
+            // 
+            // exitToolStripMenuItem1
+            // 
+            exitToolStripMenuItem1.Name = "exitToolStripMenuItem1";
+            exitToolStripMenuItem1.Size = new Size(163, 24);
+            exitToolStripMenuItem1.Text = "Exit";
+            exitToolStripMenuItem1.Click += exitToolStripMenuItem1_Click;
             // 
             // Welcome
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(564, 346);
+            ContextMenuStrip = WelcContMenuStrip;
             Controls.Add(btnCodebreaker);
             Controls.Add(btnCodemaker);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(menuStrip1);
-            MainMenuStrip = menuStrip1;
+            Controls.Add(WelcMenuStrip);
+            MainMenuStrip = WelcMenuStrip;
             Name = "Welcome";
             Text = "Welcome";
-            menuStrip1.ResumeLayout(false);
-            menuStrip1.PerformLayout();
+            WelcMenuStrip.ResumeLayout(false);
+            WelcMenuStrip.PerformLayout();
+            WelcContMenuStrip.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -156,9 +203,14 @@
         private Label label4;
         private Button btnCodemaker;
         private Button btnCodebreaker;
-        private MenuStrip menuStrip1;
+        private MenuStrip WelcMenuStrip;
         private ToolStripMenuItem runToolStripMenuItem;
         private ToolStripMenuItem codemakerToolStripMenuItem;
         private ToolStripMenuItem codebreakerToolStripMenuItem;
+        private ToolStripMenuItem exitToolStripMenuItem;
+        private ContextMenuStrip WelcContMenuStrip;
+        private ToolStripMenuItem codemakerToolStripMenuItem1;
+        private ToolStripMenuItem codebreakerToolStripMenuItem1;
+        private ToolStripMenuItem exitToolStripMenuItem1;
     }
 }

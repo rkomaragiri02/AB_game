@@ -113,13 +113,13 @@
             // guessToolStripMenuItem
             // 
             guessToolStripMenuItem.Name = "guessToolStripMenuItem";
-            guessToolStripMenuItem.Size = new Size(224, 26);
+            guessToolStripMenuItem.Size = new Size(130, 26);
             guessToolStripMenuItem.Text = "Guess";
             // 
             // exitToolStripMenuItem1
             // 
             exitToolStripMenuItem1.Name = "exitToolStripMenuItem1";
-            exitToolStripMenuItem1.Size = new Size(224, 26);
+            exitToolStripMenuItem1.Size = new Size(130, 26);
             exitToolStripMenuItem1.Text = "Exit";
             exitToolStripMenuItem1.Click += exitToolStripMenuItem1_Click;
             // 
