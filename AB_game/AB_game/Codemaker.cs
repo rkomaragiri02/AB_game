@@ -13,7 +13,7 @@ namespace AB_game
 {
     public partial class Codemaker : Form
     {      
-        public string usercode;
+        private string usercode;
         public Codemaker()
         {
             InitializeComponent();
@@ -34,30 +34,45 @@ namespace AB_game
 
             return true;
         }
+
+        public bool isCodeSet()
+        {
+            if (usercode != null)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public string returnCode()
+        {
+            return this.usercode;
+        }
         private void btnSetCode_Click(object sender, EventArgs e)
         {
             if (int.TryParse(textBoxCodeIn.Text, out int ParsedVal))
             {
                 if (textBoxCodeIn.Text.Length < 4)
                 {
-                    MessageBox.Show("The code must be 4 digits");
+                    MessageBox.Show("The code must be 4 digits", "Error");
                 }
                 else if (!isUnique(textBoxCodeIn.Text))
                 {
-                    MessageBox.Show("The code must be unique");
+                    MessageBox.Show("All digits in the code must be unique", "Error");
                 }
                 else
                 {
                     usercode = textBoxCodeIn.Text;
-                    Codebreaker codebreaker = new Codebreaker();
-                    codebreaker.Tag = usercode;
-                    codebreaker.ShowDialog();
+                    MessageBox.Show("Code successfuly set", "Success");
+                    this.Close();
+                    //Codebreaker codebreaker = new Codebreaker();
+                    //codebreaker.Tag = usercode;
+                    //codebreaker.ShowDialog();
                 }
-
             }
             else
             {
-                MessageBox.Show("Enter only integer values");
+                MessageBox.Show("Enter only integer values", "Error");
             }            
         }
 

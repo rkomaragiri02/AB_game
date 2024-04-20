@@ -13,18 +13,18 @@ namespace AB_game
 {
     public partial class Codebreaker : Form
     {
-        public Codebreaker()
+        public static string userGuess;
+        int tries;
+        string usercode;
+        public Codebreaker(string code)
         {
             InitializeComponent();
+            this.tries = 0;
+            this.usercode = code;
         }
-        public static string userGuess;
-        int tries = 0;
 
         private void btnGuess_Click(object sender, EventArgs e)
-
         {
-            string usercode = (string) this.Tag;
-
             if (!isValidGuess(richTextBoxUserIn.Text))
             {
                 MessageBox.Show("Your guess must be integers, try again");
@@ -60,7 +60,7 @@ namespace AB_game
 
         private void Compare()
         {
-            string usercode = (string) this.Tag;
+            
             //MessageBox.Show($"The user guess: {userGuess}");//DEBUG
             //MessageBox.Show($"The user code: {usercodeAsInt}");//DEBUG
             int A = 0;

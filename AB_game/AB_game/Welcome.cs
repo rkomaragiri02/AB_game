@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,32 +13,43 @@ namespace AB_game
 {
     public partial class Welcome : Form
     {
+        public string code;
         public Welcome()
         {
             InitializeComponent();
         }
 
+        private void runCodeMaker()
+        {
+            using(Codemaker codemakerForm = new Codemaker())
+            {
+                codemakerForm.ShowDialog();
+                code = codemakerForm.returnCode();
+                btnCodebreaker.Enabled = codemakerForm.isCodeSet();
+            }
+        }
+
         private void btnCodebreaker_Click(object sender, EventArgs e)
         {
-            Form codebreakerForm = new Codebreaker();
+            Codebreaker codebreakerForm = new Codebreaker(code);
             codebreakerForm.ShowDialog();
         }
 
         private void btnCodemaker_Click(object sender, EventArgs e)
         {
-            Form codemakerForm = new Codemaker();
-            codemakerForm.ShowDialog();
+            runCodeMaker();
         }
+
+        
 
         private void codemakerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form codemakerForm = new Codemaker();
-            codemakerForm.ShowDialog();
+            runCodeMaker();
         }
 
         private void codebreakerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form codebreakerForm = new Codebreaker();
+            Codebreaker codebreakerForm = new Codebreaker(code);
             codebreakerForm.ShowDialog();
         }
 
@@ -54,7 +66,7 @@ namespace AB_game
 
         private void codebreakerToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Form codebreakerForm = new Codebreaker();
+            Codebreaker codebreakerForm = new Codebreaker(code);
             codebreakerForm.ShowDialog();
         }
 
