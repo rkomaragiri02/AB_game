@@ -10,10 +10,10 @@ namespace CIS3433
         {
             SqlConnection conn = new SqlConnection(connString);
             SqlCommand cmd = new SqlCommand("AddCodemakerSession", conn);
+            conn.Open();
             cmd.CommandType = CommandType.StoredProcedure;
-            //cmd.Parameters.AddWithValue("@FIRST_NAME", SqlDbType.NVarChar).Value = firstName;
-            //cmd.Parameters.AddWithValue("@LAST_NAME", SqlDbType.NVarChar).Value = lastName;
-            //cmd.Parameters.AddWithValue("@AGE", SqlDbType.Int).Value = age;
+            cmd.Parameters.Add("@player_name", SqlDbType.NVarChar).Value = codemakerName;
+            cmd.Parameters.Add("@secret_number", SqlDbType.VarChar).Value = code;
             cmd.ExecuteNonQuery();
             conn.Close();
         }

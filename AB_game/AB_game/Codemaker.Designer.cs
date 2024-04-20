@@ -184,7 +184,7 @@
             // textBoxName
             // 
             textBoxName.Location = new Point(101, 151);
-            textBoxName.MaxLength = 4;
+            textBoxName.MaxLength = 20;
             textBoxName.Name = "textBoxName";
             textBoxName.Size = new Size(125, 27);
             textBoxName.TabIndex = 8;

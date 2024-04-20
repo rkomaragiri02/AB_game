@@ -68,7 +68,7 @@ namespace AB_game
                 {
                     usercode = textBoxCodeIn.Text;
                     MessageBox.Show("Code successfuly set", "Success");
-                    //DatabaseHelpers.insertCodemakerSession(connString, usercode, textBoxName.Text);
+                    DatabaseHelpers.insertCodemakerSession(connString, usercode, textBoxName.Text);
                     this.Close();
                     //Codebreaker codebreaker = new Codebreaker();
                     //codebreaker.Tag = usercode;
