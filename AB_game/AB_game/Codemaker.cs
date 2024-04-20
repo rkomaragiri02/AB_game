@@ -13,12 +13,27 @@ namespace AB_game
 {
     public partial class Codemaker : Form
     {      
-        public int usercode;
+        public string usercode;
         public Codemaker()
         {
             InitializeComponent();
         }
 
+        private bool isUnique(string code)
+        {
+            bool[] digitSeen = new bool[10];
+            foreach (var item in code)
+            {
+                int digit = item - '0';
+                if (digitSeen[digit])
+                    return false;
+
+                // Mark the digit as encountered
+                digitSeen[digit] = true;
+            }
+
+            return true;
+        }
         private void btnSetCode_Click(object sender, EventArgs e)
         {
             if (int.TryParse(textBoxCodeIn.Text, out int ParsedVal))
@@ -27,14 +42,18 @@ namespace AB_game
                 {
                     MessageBox.Show("The code must be 4 digits");
                 }
+                else if (!isUnique(textBoxCodeIn.Text))
+                {
+                    MessageBox.Show("The code must be unique");
+                }
                 else
                 {
-                    usercode = ParsedVal;
+                    usercode = textBoxCodeIn.Text;
                     Codebreaker codebreaker = new Codebreaker();
                     codebreaker.Tag = usercode;
                     codebreaker.ShowDialog();
                 }
-                
+
             }
             else
             {
@@ -57,7 +76,7 @@ namespace AB_game
                 digits[i] = UniqueDigit;
             }
             textBoxCodeIn.Text = textBoxCodeIn.Text = string.Join("", digits);
-            usercode = Convert.ToInt32(string.Join("", digits));
+            usercode = string.Join("", digits);
         }
 
         private void textBoxCodeIn_TextChanged(object sender, EventArgs e)
@@ -85,7 +104,7 @@ namespace AB_game
                 digits[i] = UniqueDigit;
             }
             textBoxCodeIn.Text = textBoxCodeIn.Text = string.Join("", digits);
-            usercode = Convert.ToInt32(string.Join("", digits));
+            usercode = string.Join("", digits);
         }
 
         private void exitToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -113,7 +132,7 @@ namespace AB_game
                 digits[i] = UniqueDigit;
             }
             textBoxCodeIn.Text = textBoxCodeIn.Text = string.Join("", digits);
-            usercode = Convert.ToInt32(string.Join("", digits));
+            usercode = string.Join("", digits);
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)

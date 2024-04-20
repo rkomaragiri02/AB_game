@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,55 +17,58 @@ namespace AB_game
         {
             InitializeComponent();
         }
-        public static int userGuess;
+        public static string userGuess;
         int tries = 0;
 
         private void btnGuess_Click(object sender, EventArgs e)
 
         {
-            int usercodeAsInt = (int)this.Tag;
+            string usercode = (string) this.Tag;
 
-            if (int.TryParse(richTextBoxUserIn.Text, out int ParsedVal2))
-            {
-                if (ParsedVal2 >= 1000 && ParsedVal2 <= 9999)
-                {
-                    userGuess = ParsedVal2;
-                    tries++;
-                    if (tries == 7 && usercodeAsInt != userGuess)
-                    {
-                        MessageBox.Show("Thats it! Out of tries!");
-                        Application.Exit();
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("You must enter 4 digits, try again");
-                    return;
-                }
-            }
-
-            else
+            if (!isValidGuess(richTextBoxUserIn.Text))
             {
                 MessageBox.Show("Your guess must be integers, try again");
                 return;
             }
-
+            if (richTextBoxUserIn.Text.Length < 4)
+            {
+                MessageBox.Show("You must enter 4 digits, try again");
+                return;
+            }
+            userGuess = richTextBoxUserIn.Text;
+            if (tries == 7 && usercode != userGuess)
+            {
+                MessageBox.Show("Thats it! Out of tries!");
+                Application.Exit();
+            }
             Compare();
+            tries++;
+        }
+
+        bool isValidGuess(string userGuess)
+        {
+            if (userGuess == "")
+            {
+                return false;
+            }
+           
+            foreach (var item in userGuess)
+                if (!char.IsDigit(item))
+                    return false;
+            return true;
         }
 
         private void Compare()
         {
-            int usercodeAsInt = (int)this.Tag;
+            string usercode = (string) this.Tag;
             //MessageBox.Show($"The user guess: {userGuess}");//DEBUG
             //MessageBox.Show($"The user code: {usercodeAsInt}");//DEBUG
             int A = 0;
             int B = 0;
 
-            string userGuessAsString = userGuess.ToString();
-            string[] UserGuessArray = userGuessAsString.Select(c => c.ToString()).ToArray();
+            string[] UserGuessArray = userGuess.Select(c => c.ToString()).ToArray();
 
-            string usercodeAsString = usercodeAsInt.ToString();
-            string[] UserCodeArray = usercodeAsString.Select(c => c.ToString()).ToArray();
+            string[] UserCodeArray = usercode.Select(c => c.ToString()).ToArray();
 
             //MessageBox.Show($"UserGuessArray Length: {UserGuessArray.Length}, UserCodeArray Length: {UserCodeArray.Length}");
 
