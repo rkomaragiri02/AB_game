@@ -8,4 +8,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CIS3433\CIS3433.csproj" />
+    <ProjectReference Include="..\SQLData\SQLData.csproj" />
+  </ItemGroup>
+
 </Project>
