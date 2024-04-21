@@ -8,6 +8,9 @@ using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CIS3433;
+using Microsoft.VisualBasic;
+using SQLData;
 
 namespace AB_game
 {
@@ -16,11 +19,13 @@ namespace AB_game
         public static string userGuess;
         int tries;
         string usercode;
+        int totalSeconds;
         public Codebreaker(string code)
         {
             InitializeComponent();
             this.tries = 0;
             this.usercode = code;
+            totalSeconds = 0;
         }
 
         private void btnGuess_Click(object sender, EventArgs e)
@@ -30,6 +35,7 @@ namespace AB_game
 
         private void validateUserGuess()
         {
+            int currentSessionID;
             if (!isValidGuess(richTextBoxUserIn.Text))
             {
                 MessageBox.Show("Your guess must be integers, try again");
@@ -40,14 +46,24 @@ namespace AB_game
                 MessageBox.Show("You must enter 4 digits, try again");
                 return;
             }
+            tries++;
             userGuess = richTextBoxUserIn.Text;
-            if (tries == 7 && usercode != userGuess)
+            if (tries == 10 && usercode != userGuess)
             {
                 MessageBox.Show("Thats it! Out of tries!");
                 Application.Exit();
             }
             Compare();
-            tries++;
+            if (usercode == userGuess)
+            {
+                timerGame.Enabled = false;
+                int score = CodebreakerHelper.calculateScore(tries, totalSeconds);
+                MessageBox.Show("Correct!");
+                string codebreakerName = Interaction.InputBox("Enter name");
+                // Do score + add to database here
+                
+                DatabaseHelpers.insertCodebreakerSession(DBInfo.dbConnString, usercode, codebreakerName, tries, score, totalSeconds);
+            }
         }
 
         bool isValidGuess(string userGuess)
@@ -56,7 +72,7 @@ namespace AB_game
             {
                 return false;
             }
-           
+
             foreach (var item in userGuess)
                 if (!char.IsDigit(item))
                     return false;
@@ -65,7 +81,7 @@ namespace AB_game
 
         private void Compare()
         {
-            
+
             //MessageBox.Show($"The user guess: {userGuess}");//DEBUG
             //MessageBox.Show($"The user code: {usercodeAsInt}");//DEBUG
             int A = 0;
@@ -88,7 +104,9 @@ namespace AB_game
                     B++;
                 }
             }
-            MessageBox.Show($"{A}A{B}B");
+            //MessageBox.Show($"{A}A{B}B");
+            lbGuesses.Items.Add($"Guess - {userGuess}, Hint - {A}A{B}B");
+            DatabaseHelpers.logGuess(DBInfo.dbConnString, userGuess, $"{A}A{B}B");
         }
         private void CBContextStrip_Opening(object sender, CancelEventArgs e)
         {
@@ -108,6 +126,22 @@ namespace AB_game
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void guessToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            validateUserGuess();
+        }
+
+        private void Codebreaker_Load(object sender, EventArgs e)
+        {
+            timerGame.Enabled = true;
+        }
+
+        private void timerGame_Tick(object sender, EventArgs e)
+        {
+            totalSeconds++;
+            labelTimeSeconds.Text = totalSeconds.ToString();
         }
     }
 }
