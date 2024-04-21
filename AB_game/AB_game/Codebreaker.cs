@@ -25,6 +25,11 @@ namespace AB_game
 
         private void btnGuess_Click(object sender, EventArgs e)
         {
+            validateUserGuess();
+        }
+
+        private void validateUserGuess()
+        {
             if (!isValidGuess(richTextBoxUserIn.Text))
             {
                 MessageBox.Show("Your guess must be integers, try again");

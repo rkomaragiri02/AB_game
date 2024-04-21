@@ -396,6 +396,4 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
-
-# other
-SQLData/
+/AB_game/SQLData

@@ -43,6 +43,9 @@
             setCodeToolStripMenuItem1 = new ToolStripMenuItem();
             randomizeToolStripMenuItem = new ToolStripMenuItem();
             exitToolStripMenuItem1 = new ToolStripMenuItem();
+            labelCode = new Label();
+            label2 = new Label();
+            textBoxName = new TextBox();
             CMContextStrip.SuspendLayout();
             CMMenuStrip.SuspendLayout();
             SuspendLayout();
@@ -51,7 +54,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
-            label1.Location = new Point(12, 18);
+            label1.Location = new Point(12, 28);
             label1.Name = "label1";
             label1.Size = new Size(201, 46);
             label1.TabIndex = 0;
@@ -59,7 +62,7 @@
             // 
             // textBoxCodeIn
             // 
-            textBoxCodeIn.Location = new Point(12, 106);
+            textBoxCodeIn.Location = new Point(101, 106);
             textBoxCodeIn.MaxLength = 4;
             textBoxCodeIn.Name = "textBoxCodeIn";
             textBoxCodeIn.Size = new Size(125, 27);
@@ -68,7 +71,8 @@
             // 
             // btnSetCode
             // 
-            btnSetCode.Location = new Point(164, 90);
+            btnSetCode.Enabled = false;
+            btnSetCode.Location = new Point(259, 90);
             btnSetCode.Name = "btnSetCode";
             btnSetCode.Size = new Size(112, 58);
             btnSetCode.TabIndex = 2;
@@ -78,11 +82,11 @@
             // 
             // btnRandomise
             // 
-            btnRandomise.Location = new Point(25, 167);
+            btnRandomise.Location = new Point(259, 154);
             btnRandomise.Name = "btnRandomise";
             btnRandomise.Size = new Size(112, 58);
             btnRandomise.TabIndex = 3;
-            btnRandomise.Text = "Randomize";
+            btnRandomise.Text = "Randomize Code";
             btnRandomise.UseVisualStyleBackColor = true;
             btnRandomise.Click += btnRandomise_Click;
             // 
@@ -127,7 +131,7 @@
             CMMenuStrip.Items.AddRange(new ToolStripItem[] { actionsToolStripMenuItem1 });
             CMMenuStrip.Location = new Point(0, 0);
             CMMenuStrip.Name = "CMMenuStrip";
-            CMMenuStrip.Size = new Size(348, 28);
+            CMMenuStrip.Size = new Size(383, 28);
             CMMenuStrip.TabIndex = 5;
             CMMenuStrip.Text = "menuStrip1";
             // 
@@ -159,12 +163,42 @@
             exitToolStripMenuItem1.Text = "Exit";
             exitToolStripMenuItem1.Click += exitToolStripMenuItem1_Click;
             // 
+            // labelCode
+            // 
+            labelCode.AutoSize = true;
+            labelCode.Location = new Point(0, 109);
+            labelCode.Name = "labelCode";
+            labelCode.Size = new Size(82, 20);
+            labelCode.TabIndex = 6;
+            labelCode.Text = "Enter Code";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(0, 154);
+            label2.Name = "label2";
+            label2.Size = new Size(90, 20);
+            label2.TabIndex = 7;
+            label2.Text = "Enter name*";
+            // 
+            // textBoxName
+            // 
+            textBoxName.Location = new Point(101, 151);
+            textBoxName.MaxLength = 20;
+            textBoxName.Name = "textBoxName";
+            textBoxName.Size = new Size(125, 27);
+            textBoxName.TabIndex = 8;
+            textBoxName.TextChanged += textBoxName_TextChanged;
+            // 
             // Codemaker
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(348, 298);
+            ClientSize = new Size(383, 298);
             ContextMenuStrip = CMContextStrip;
+            Controls.Add(textBoxName);
+            Controls.Add(label2);
+            Controls.Add(labelCode);
             Controls.Add(CMMenuStrip);
             Controls.Add(btnRandomise);
             Controls.Add(btnSetCode);
@@ -196,5 +230,8 @@
         private ToolStripMenuItem setCodeToolStripMenuItem1;
         private ToolStripMenuItem randomizeToolStripMenuItem;
         private ToolStripMenuItem exitToolStripMenuItem1;
+        private Label labelCode;
+        private Label label2;
+        private TextBox textBoxName;
     }
 }

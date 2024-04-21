@@ -8,15 +8,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
+using CIS3433;
+using SQLData;
 
 namespace AB_game
 {
     public partial class Codemaker : Form
-    {      
+    {
         private string usercode;
+        private string connString;
         public Codemaker()
         {
             InitializeComponent();
+            connString = DBInfo.dbConnString;
         }
 
         private bool isUnique(string code)
@@ -48,7 +52,7 @@ namespace AB_game
         {
             return this.usercode;
         }
-        private void btnSetCode_Click(object sender, EventArgs e)
+        private void setCode()
         {
             if (int.TryParse(textBoxCodeIn.Text, out int ParsedVal))
             {
@@ -64,6 +68,7 @@ namespace AB_game
                 {
                     usercode = textBoxCodeIn.Text;
                     MessageBox.Show("Code successfuly set", "Success");
+                    DatabaseHelpers.insertCodemakerSession(connString, usercode, textBoxName.Text);
                     this.Close();
                     //Codebreaker codebreaker = new Codebreaker();
                     //codebreaker.Tag = usercode;
@@ -73,7 +78,12 @@ namespace AB_game
             else
             {
                 MessageBox.Show("Enter only integer values", "Error");
-            }            
+            }
+        }
+
+        private void btnSetCode_Click(object sender, EventArgs e)
+        {
+            setCode();
         }
 
         private void btnRandomise_Click(object sender, EventArgs e)
@@ -82,7 +92,7 @@ namespace AB_game
             int[] digits = new int[4];
 
             for (int i = 0; i < 4; i++)
-            {   
+            {
                 int UniqueDigit = num.Next(0, 10);
                 while (digits.Contains(UniqueDigit))
                 {
@@ -102,6 +112,7 @@ namespace AB_game
         private void setCodeToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             //Clone of setcode button logic
+            setCode();   
         }
 
         private void randomizeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -153,6 +164,11 @@ namespace AB_game
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void textBoxName_TextChanged(object sender, EventArgs e)
+        {
+            btnSetCode.Enabled = textBoxName.Text != "";
         }
     }
 }
