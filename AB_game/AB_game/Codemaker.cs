@@ -21,6 +21,7 @@ namespace AB_game
         private string playerName;
         private int tries;
         private int totalSeconds;
+        private List<SessionDataPoint> sessionDataPoints = new List<SessionDataPoint>();
         public Codemaker(string playerName)
         {
             InitializeComponent();
@@ -92,7 +93,7 @@ namespace AB_game
 
         private void validateUserGuess()
         {
-            int currentSessionID;
+            int currentSessionID = DatabaseHelpers.getSessionID(DBInfo.dbConnString) + 1;
             string userGuess;
             if (!isValidGuess(textBoxUserGuess.Text))
             {
@@ -113,7 +114,7 @@ namespace AB_game
                 MessageBox.Show("Thats it! Out of tries!");
                 this.Close();
             }
-            Compare();
+            Compare(currentSessionID);
             if (usercode == userGuess)
             {
                 timerGame.Enabled = false;
@@ -121,6 +122,7 @@ namespace AB_game
                 MessageBox.Show($"Correct! Your score is {score}");
                 // Do score + add to database here
                 DatabaseHelpers.insertCodemakerSession(DBInfo.dbConnString, usercode, playerName, tries, score, totalSeconds);
+                DatabaseHelpers.logSessionDataPoints(DBInfo.dbConnString, sessionDataPoints);
                 this.Close();
             }
         }
@@ -138,7 +140,7 @@ namespace AB_game
             return true;
         }
 
-        private void Compare()
+        private void Compare(int sessionID)
         {
 
             //MessageBox.Show($"The user guess: {userGuess}");//DEBUG
@@ -165,7 +167,9 @@ namespace AB_game
                 }
             }
             textBoxHint.Text = $"{A}A{B}B";
-            //DatabaseHelpers.logGuess(DBInfo.dbConnString, userGuess, $"{A}A{B}B");
+            sessionDataPoints.Add(new SessionDataPoint(sessionID, userGuess, textBoxHint.Text));
+            //DatabaseHelpers.logSessionDataPoint(DBInfo.dbConnString, sessionID, userGuess, $"{A}A{B}B");
+
         }
 
         private void btnSetCode_Click(object sender, EventArgs e)

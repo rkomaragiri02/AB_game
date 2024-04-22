@@ -36,17 +36,61 @@ namespace CIS3433
             conn.Close();
         }
 
-        public static void logGuess(string connString, string playerGuess, string recievedHint)
+        public static void logSessionDataPoint(string connString, int sessionId, string guess, string hint)
         {
 
             SqlConnection conn = new SqlConnection(connString);
-            SqlCommand cmd = new SqlCommand("LogGuess", conn);
+            SqlCommand cmd = new SqlCommand("LogSessionData", conn);
             conn.Open();
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add("@player_guess", SqlDbType.VarChar).Value = playerGuess;
-            cmd.Parameters.Add("@recieved_hint", SqlDbType.VarChar).Value = recievedHint;
+            cmd.Parameters.Add("@session_id", SqlDbType.Int).Value = sessionId;
+            cmd.Parameters.Add("@guess", SqlDbType.VarChar).Value = guess;
+            cmd.Parameters.Add("@hint", SqlDbType.VarChar).Value = hint;
             cmd.ExecuteNonQuery();
             conn.Close();
+        }
+
+        public static void logSessionDataPoints(string connString, List<SessionDataPoint> datapoints)
+        {
+            SqlConnection conn = new SqlConnection(connString);
+            conn.Open();
+            foreach (var item in datapoints)
+            {
+                SqlCommand cmd = new SqlCommand("LogSessionData", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@session_id", SqlDbType.Int).Value = item.sessionId;
+                cmd.Parameters.Add("@guess", SqlDbType.VarChar).Value = item.guess;
+                cmd.Parameters.Add("@hint", SqlDbType.VarChar).Value = item.hint;
+                cmd.ExecuteNonQuery();
+            }
+            conn.Close();
+        }
+
+        public static int getSessionID(string connString)
+        {
+            SqlConnection conn = new SqlConnection(connString);
+            string query = "SELECT COUNT(session_id) from game_data;";
+            SqlCommand cmd = new SqlCommand(query, conn);
+            conn.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                int sessionID = 0;
+                while (reader.Read())
+                {
+                    sessionID = reader.GetInt32(0);
+                }
+                reader.Close();
+                conn.Close();
+                return sessionID;
+            }
+            else
+            {
+                reader.Close();
+                conn.Close();
+                return 0;
+            }
         }
     }
 }
