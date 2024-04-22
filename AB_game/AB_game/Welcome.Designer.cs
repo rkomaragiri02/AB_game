@@ -44,6 +44,8 @@
             codemakerToolStripMenuItem1 = new ToolStripMenuItem();
             codebreakerToolStripMenuItem1 = new ToolStripMenuItem();
             exitToolStripMenuItem1 = new ToolStripMenuItem();
+            label5 = new Label();
+            textBoxPlayerName = new TextBox();
             WelcMenuStrip.SuspendLayout();
             WelcContMenuStrip.SuspendLayout();
             SuspendLayout();
@@ -70,7 +72,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(22, 132);
+            label3.Location = new Point(143, 103);
             label3.Name = "label3";
             label3.Size = new Size(123, 20);
             label3.TabIndex = 2;
@@ -79,7 +81,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(22, 163);
+            label4.Location = new Point(272, 103);
             label4.Name = "label4";
             label4.Size = new Size(149, 20);
             label4.TabIndex = 3;
@@ -87,7 +89,8 @@
             // 
             // btnCodemaker
             // 
-            btnCodemaker.Location = new Point(22, 235);
+            btnCodemaker.Enabled = false;
+            btnCodemaker.Location = new Point(22, 264);
             btnCodemaker.Name = "btnCodemaker";
             btnCodemaker.Size = new Size(149, 64);
             btnCodemaker.TabIndex = 4;
@@ -98,7 +101,7 @@
             // btnCodebreaker
             // 
             btnCodebreaker.Enabled = false;
-            btnCodebreaker.Location = new Point(370, 235);
+            btnCodebreaker.Location = new Point(370, 264);
             btnCodebreaker.Name = "btnCodebreaker";
             btnCodebreaker.Size = new Size(149, 64);
             btnCodebreaker.TabIndex = 5;
@@ -125,6 +128,7 @@
             // 
             // codemakerToolStripMenuItem
             // 
+            codemakerToolStripMenuItem.Enabled = false;
             codemakerToolStripMenuItem.Name = "codemakerToolStripMenuItem";
             codemakerToolStripMenuItem.Size = new Size(177, 26);
             codemakerToolStripMenuItem.Text = "Codemaker";
@@ -132,6 +136,7 @@
             // 
             // codebreakerToolStripMenuItem
             // 
+            codebreakerToolStripMenuItem.Enabled = false;
             codebreakerToolStripMenuItem.Name = "codebreakerToolStripMenuItem";
             codebreakerToolStripMenuItem.Size = new Size(177, 26);
             codebreakerToolStripMenuItem.Text = "Codebreaker";
@@ -153,6 +158,7 @@
             // 
             // codemakerToolStripMenuItem1
             // 
+            codemakerToolStripMenuItem1.Enabled = false;
             codemakerToolStripMenuItem1.Name = "codemakerToolStripMenuItem1";
             codemakerToolStripMenuItem1.Size = new Size(163, 24);
             codemakerToolStripMenuItem1.Text = "Codemaker";
@@ -160,6 +166,7 @@
             // 
             // codebreakerToolStripMenuItem1
             // 
+            codebreakerToolStripMenuItem1.Enabled = false;
             codebreakerToolStripMenuItem1.Name = "codebreakerToolStripMenuItem1";
             codebreakerToolStripMenuItem1.Size = new Size(163, 24);
             codebreakerToolStripMenuItem1.Text = "Codebreaker";
@@ -172,12 +179,34 @@
             exitToolStripMenuItem1.Text = "Exit";
             exitToolStripMenuItem1.Click += exitToolStripMenuItem1_Click;
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            label5.Location = new Point(117, 183);
+            label5.Name = "label5";
+            label5.Size = new Size(92, 20);
+            label5.TabIndex = 7;
+            label5.Text = "Enter Name";
+            // 
+            // textBoxPlayerName
+            // 
+            textBoxPlayerName.Font = new Font("Segoe UI", 9F);
+            textBoxPlayerName.Location = new Point(231, 180);
+            textBoxPlayerName.MaxLength = 20;
+            textBoxPlayerName.Name = "textBoxPlayerName";
+            textBoxPlayerName.Size = new Size(163, 27);
+            textBoxPlayerName.TabIndex = 8;
+            textBoxPlayerName.TextChanged += textBoxPlayerName_TextChanged;
+            // 
             // Welcome
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(564, 346);
+            ClientSize = new Size(564, 392);
             ContextMenuStrip = WelcContMenuStrip;
+            Controls.Add(textBoxPlayerName);
+            Controls.Add(label5);
             Controls.Add(btnCodebreaker);
             Controls.Add(btnCodemaker);
             Controls.Add(label4);
@@ -212,5 +241,7 @@
         private ToolStripMenuItem codemakerToolStripMenuItem1;
         private ToolStripMenuItem codebreakerToolStripMenuItem1;
         private ToolStripMenuItem exitToolStripMenuItem1;
+        private Label label5;
+        private TextBox textBoxPlayerName;
     }
 }

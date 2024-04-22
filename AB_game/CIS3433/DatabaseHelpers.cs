@@ -6,14 +6,17 @@ namespace CIS3433
 {
     public class DatabaseHelpers
     {
-        public static void insertCodemakerSession(string connString, string code, string codemakerName)
+        public static void insertCodemakerSession(string connString, string code, string codemakerName, int totalTries, int gameScore, int totalSeconds)
         {
             SqlConnection conn = new SqlConnection(connString);
             SqlCommand cmd = new SqlCommand("AddCodemakerSession", conn);
             conn.Open();
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@player_name", SqlDbType.VarChar).Value = codemakerName;
-            cmd.Parameters.Add("@secret_number", SqlDbType.VarChar).Value = code;
+            cmd.Parameters.Add("@secret_number", SqlDbType.VarChar).Value = code; 
+            cmd.Parameters.Add("@total_tries", SqlDbType.Int).Value = totalTries;
+            cmd.Parameters.Add("@game_score", SqlDbType.Int).Value = gameScore;
+            cmd.Parameters.Add("@total_seconds", SqlDbType.Int).Value = totalSeconds;
             cmd.ExecuteNonQuery();
             conn.Close();
         }

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
 using CIS3433;
+using Microsoft.VisualBasic;
 using SQLData;
 
 namespace AB_game
@@ -17,10 +18,16 @@ namespace AB_game
     {
         private string usercode;
         private string connString;
-        public Codemaker()
+        private string playerName;
+        private int tries;
+        private int totalSeconds;
+        public Codemaker(string playerName)
         {
             InitializeComponent();
             connString = DBInfo.dbConnString;
+            this.playerName = playerName;
+            this.tries = 0;
+            this.totalSeconds = 0;
         }
 
         private bool isUnique(string code)
@@ -67,9 +74,11 @@ namespace AB_game
                 else
                 {
                     usercode = textBoxCodeIn.Text;
+                    textBoxCodeIn.Text = "";
                     MessageBox.Show("Code successfuly set", "Success");
-                    DatabaseHelpers.insertCodemakerSession(connString, usercode, textBoxName.Text);
-                    this.Close();
+                    buttonGuess.Enabled = true;
+                    timerGame.Enabled = true;
+                    //DatabaseHelpers.insertCodemakerSession(connString, usercode, textBoxName.Text);
                     //Codebreaker codebreaker = new Codebreaker();
                     //codebreaker.Tag = usercode;
                     //codebreaker.ShowDialog();
@@ -79,6 +88,84 @@ namespace AB_game
             {
                 MessageBox.Show("Enter only integer values", "Error");
             }
+        }
+
+        private void validateUserGuess()
+        {
+            int currentSessionID;
+            string userGuess;
+            if (!isValidGuess(textBoxUserGuess.Text))
+            {
+                MessageBox.Show("Your guess must be integers, try again");
+                return;
+            }
+            if (textBoxUserGuess.Text.Length < 4)
+            {
+                MessageBox.Show("You must enter 4 digits, try again");
+                return;
+            }
+            tries++;
+            userGuess = textBoxUserGuess.Text;
+            labelGuessesRemaining.Text = (10 - tries).ToString();
+            if (tries == 10 && usercode != userGuess)
+            {
+                timerGame.Enabled = false;
+                MessageBox.Show("Thats it! Out of tries!");
+                this.Close();
+            }
+            Compare();
+            if (usercode == userGuess)
+            {
+                timerGame.Enabled = false;
+                int score = CodebreakerHelper.calculateScore(tries, totalSeconds);
+                MessageBox.Show($"Correct! Your score is {score}");
+                // Do score + add to database here
+                DatabaseHelpers.insertCodemakerSession(DBInfo.dbConnString, usercode, playerName, tries, score, totalSeconds);
+                this.Close();
+            }
+        }
+
+        bool isValidGuess(string userGuess)
+        {
+            if (userGuess == "")
+            {
+                return false;
+            }
+
+            foreach (var item in userGuess)
+                if (!char.IsDigit(item))
+                    return false;
+            return true;
+        }
+
+        private void Compare()
+        {
+
+            //MessageBox.Show($"The user guess: {userGuess}");//DEBUG
+            //MessageBox.Show($"The user code: {usercodeAsInt}");//DEBUG
+            string userGuess = textBoxUserGuess.Text;
+            int A = 0;
+            int B = 0;
+
+            string[] UserGuessArray = userGuess.Select(c => c.ToString()).ToArray();
+
+            string[] UserCodeArray = usercode.Select(c => c.ToString()).ToArray();
+
+            //MessageBox.Show($"UserGuessArray Length: {UserGuessArray.Length}, UserCodeArray Length: {UserCodeArray.Length}");
+
+            for (int i = 0; i < 4; i++)
+            {
+                if (UserGuessArray[i] == UserCodeArray[i])
+                {
+                    A++;
+                }
+                else if (UserGuessArray.Contains(UserCodeArray[i]) && UserGuessArray[i] != UserCodeArray[i])
+                {
+                    B++;
+                }
+            }
+            textBoxHint.Text = $"{A}A{B}B";
+            //DatabaseHelpers.logGuess(DBInfo.dbConnString, userGuess, $"{A}A{B}B");
         }
 
         private void btnSetCode_Click(object sender, EventArgs e)
@@ -112,7 +199,7 @@ namespace AB_game
         private void setCodeToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             //Clone of setcode button logic
-            setCode();   
+            setCode();
         }
 
         private void randomizeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -135,7 +222,7 @@ namespace AB_game
 
         private void exitToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
 
         private void setCodeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -168,7 +255,16 @@ namespace AB_game
 
         private void textBoxName_TextChanged(object sender, EventArgs e)
         {
-            btnSetCode.Enabled = textBoxName.Text != "";
+        }
+
+        private void buttonGuess_Click(object sender, EventArgs e)
+        {
+            validateUserGuess();
+        }
+
+        private void timerGame_Tick(object sender, EventArgs e)
+        {
+            labelTimeElapsed.Text = totalSeconds++.ToString();
         }
     }
 }

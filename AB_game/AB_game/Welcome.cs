@@ -21,7 +21,7 @@ namespace AB_game
 
         private void runCodeMaker()
         {
-            using(Codemaker codemakerForm = new Codemaker())
+            using (Codemaker codemakerForm = new Codemaker(textBoxPlayerName.Text))
             {
                 codemakerForm.ShowDialog();
                 code = codemakerForm.returnCode();
@@ -40,7 +40,7 @@ namespace AB_game
             runCodeMaker();
         }
 
-        
+
 
         private void codemakerToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -60,8 +60,7 @@ namespace AB_game
 
         private void codemakerToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Form codemakerForm = new Codemaker();
-            codemakerForm.ShowDialog();
+            runCodeMaker();
         }
 
         private void codebreakerToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -73,6 +72,16 @@ namespace AB_game
         private void exitToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void textBoxPlayerName_TextChanged(object sender, EventArgs e)
+        {
+            btnCodemaker.Enabled = textBoxPlayerName.Text.Length > 0;
+            btnCodebreaker.Enabled = textBoxPlayerName.Text.Length > 0;
+            codebreakerToolStripMenuItem.Enabled = textBoxPlayerName.Text.Length > 0;
+            codemakerToolStripMenuItem.Enabled = textBoxPlayerName.Text.Length > 0;
+            codebreakerToolStripMenuItem1.Enabled = textBoxPlayerName.Text.Length > 0;
+            codemakerToolStripMenuItem1.Enabled = textBoxPlayerName.Text.Length > 0;
         }
     }
 }

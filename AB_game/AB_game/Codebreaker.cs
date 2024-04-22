@@ -62,7 +62,7 @@ namespace AB_game
                 string codebreakerName = Interaction.InputBox("Enter name");
                 // Do score + add to database here
                 
-                DatabaseHelpers.insertCodebreakerSession(DBInfo.dbConnString, usercode, codebreakerName, tries, score, totalSeconds);
+               // DatabaseHelpers.insertCodebreakerSession(DBInfo.dbConnString, usercode, codebreakerName, tries, score, totalSeconds);
             }
         }
 
@@ -106,7 +106,7 @@ namespace AB_game
             }
             //MessageBox.Show($"{A}A{B}B");
             lbGuesses.Items.Add($"Guess - {userGuess}, Hint - {A}A{B}B");
-            DatabaseHelpers.logGuess(DBInfo.dbConnString, userGuess, $"{A}A{B}B");
+            //DatabaseHelpers.logGuess(DBInfo.dbConnString, userGuess, $"{A}A{B}B");
         }
         private void CBContextStrip_Opening(object sender, CancelEventArgs e)
         {

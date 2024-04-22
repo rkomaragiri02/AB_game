@@ -44,8 +44,17 @@
             randomizeToolStripMenuItem = new ToolStripMenuItem();
             exitToolStripMenuItem1 = new ToolStripMenuItem();
             labelCode = new Label();
+            labelGuess = new Label();
+            textBoxUserGuess = new TextBox();
+            buttonGuess = new Button();
+            label3 = new Label();
+            timerGame = new System.Windows.Forms.Timer(components);
             label2 = new Label();
-            textBoxName = new TextBox();
+            labelTimeElapsed = new Label();
+            labelGuessesRemaining = new Label();
+            label4 = new Label();
+            label5 = new Label();
+            textBoxHint = new TextBox();
             CMContextStrip.SuspendLayout();
             CMMenuStrip.SuspendLayout();
             SuspendLayout();
@@ -62,7 +71,7 @@
             // 
             // textBoxCodeIn
             // 
-            textBoxCodeIn.Location = new Point(101, 106);
+            textBoxCodeIn.Location = new Point(115, 106);
             textBoxCodeIn.MaxLength = 4;
             textBoxCodeIn.Name = "textBoxCodeIn";
             textBoxCodeIn.Size = new Size(125, 27);
@@ -71,7 +80,6 @@
             // 
             // btnSetCode
             // 
-            btnSetCode.Enabled = false;
             btnSetCode.Location = new Point(259, 90);
             btnSetCode.Name = "btnSetCode";
             btnSetCode.Size = new Size(112, 58);
@@ -131,7 +139,7 @@
             CMMenuStrip.Items.AddRange(new ToolStripItem[] { actionsToolStripMenuItem1 });
             CMMenuStrip.Location = new Point(0, 0);
             CMMenuStrip.Name = "CMMenuStrip";
-            CMMenuStrip.Size = new Size(383, 28);
+            CMMenuStrip.Size = new Size(823, 28);
             CMMenuStrip.TabIndex = 5;
             CMMenuStrip.Text = "menuStrip1";
             // 
@@ -166,38 +174,126 @@
             // labelCode
             // 
             labelCode.AutoSize = true;
-            labelCode.Location = new Point(0, 109);
+            labelCode.Location = new Point(14, 109);
             labelCode.Name = "labelCode";
             labelCode.Size = new Size(82, 20);
             labelCode.TabIndex = 6;
             labelCode.Text = "Enter Code";
             // 
+            // labelGuess
+            // 
+            labelGuess.AutoSize = true;
+            labelGuess.Location = new Point(466, 73);
+            labelGuess.Name = "labelGuess";
+            labelGuess.Size = new Size(163, 20);
+            labelGuess.TabIndex = 9;
+            labelGuess.Text = "Please enter your guess";
+            // 
+            // textBoxUserGuess
+            // 
+            textBoxUserGuess.Location = new Point(645, 70);
+            textBoxUserGuess.MaxLength = 4;
+            textBoxUserGuess.Name = "textBoxUserGuess";
+            textBoxUserGuess.Size = new Size(125, 27);
+            textBoxUserGuess.TabIndex = 10;
+            // 
+            // buttonGuess
+            // 
+            buttonGuess.Enabled = false;
+            buttonGuess.Location = new Point(497, 154);
+            buttonGuess.Name = "buttonGuess";
+            buttonGuess.Size = new Size(112, 58);
+            buttonGuess.TabIndex = 11;
+            buttonGuess.Text = "Guess";
+            buttonGuess.UseVisualStyleBackColor = true;
+            buttonGuess.Click += buttonGuess_Click;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(638, 154);
+            label3.Name = "label3";
+            label3.Size = new Size(132, 20);
+            label3.TabIndex = 12;
+            label3.Text = "Guesses remaining";
+            // 
+            // timerGame
+            // 
+            timerGame.Interval = 1000;
+            timerGame.Tick += timerGame_Tick;
+            // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(0, 154);
+            label2.Location = new Point(655, 214);
             label2.Name = "label2";
-            label2.Size = new Size(90, 20);
-            label2.TabIndex = 7;
-            label2.Text = "Enter name*";
+            label2.Size = new Size(98, 20);
+            label2.TabIndex = 13;
+            label2.Text = "Time Elapsed";
             // 
-            // textBoxName
+            // labelTimeElapsed
             // 
-            textBoxName.Location = new Point(101, 151);
-            textBoxName.MaxLength = 20;
-            textBoxName.Name = "textBoxName";
-            textBoxName.Size = new Size(125, 27);
-            textBoxName.TabIndex = 8;
-            textBoxName.TextChanged += textBoxName_TextChanged;
+            labelTimeElapsed.AutoSize = true;
+            labelTimeElapsed.Font = new Font("Segoe UI", 12F);
+            labelTimeElapsed.Location = new Point(690, 234);
+            labelTimeElapsed.Name = "labelTimeElapsed";
+            labelTimeElapsed.Size = new Size(23, 28);
+            labelTimeElapsed.TabIndex = 14;
+            labelTimeElapsed.Text = "0";
+            // 
+            // labelGuessesRemaining
+            // 
+            labelGuessesRemaining.AutoSize = true;
+            labelGuessesRemaining.Font = new Font("Segoe UI", 12F);
+            labelGuessesRemaining.Location = new Point(690, 174);
+            labelGuessesRemaining.Name = "labelGuessesRemaining";
+            labelGuessesRemaining.Size = new Size(34, 28);
+            labelGuessesRemaining.TabIndex = 15;
+            labelGuessesRemaining.Text = "10";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(12, 234);
+            label4.Name = "label4";
+            label4.Size = new Size(302, 20);
+            label4.TabIndex = 16;
+            label4.Text = "* Once you set the code, the timer will begin";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(528, 113);
+            label5.Name = "label5";
+            label5.Size = new Size(37, 20);
+            label5.TabIndex = 17;
+            label5.Text = "Hint";
+            // 
+            // textBoxHint
+            // 
+            textBoxHint.Location = new Point(645, 110);
+            textBoxHint.Name = "textBoxHint";
+            textBoxHint.ReadOnly = true;
+            textBoxHint.Size = new Size(125, 27);
+            textBoxHint.TabIndex = 18;
             // 
             // Codemaker
             // 
+            AcceptButton = buttonGuess;
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(383, 298);
+            ClientSize = new Size(823, 334);
             ContextMenuStrip = CMContextStrip;
-            Controls.Add(textBoxName);
+            Controls.Add(textBoxHint);
+            Controls.Add(label5);
+            Controls.Add(label4);
+            Controls.Add(labelGuessesRemaining);
+            Controls.Add(labelTimeElapsed);
             Controls.Add(label2);
+            Controls.Add(label3);
+            Controls.Add(buttonGuess);
+            Controls.Add(textBoxUserGuess);
+            Controls.Add(labelGuess);
             Controls.Add(labelCode);
             Controls.Add(CMMenuStrip);
             Controls.Add(btnRandomise);
@@ -231,7 +327,16 @@
         private ToolStripMenuItem randomizeToolStripMenuItem;
         private ToolStripMenuItem exitToolStripMenuItem1;
         private Label labelCode;
+        private Label labelGuess;
+        private TextBox textBoxUserGuess;
+        private Button buttonGuess;
+        private Label label3;
+        private System.Windows.Forms.Timer timerGame;
         private Label label2;
-        private TextBox textBoxName;
+        private Label labelTimeElapsed;
+        private Label labelGuessesRemaining;
+        private Label label4;
+        private Label label5;
+        private TextBox textBoxHint;
     }
 }
