@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            richTextBoxUserIn = new RichTextBox();
             btnGuess = new Button();
             CBContextStrip = new ContextMenuStrip(components);
             guessToolStripMenuItem1 = new ToolStripMenuItem();
@@ -44,27 +43,19 @@
             labelGuesses = new Label();
             label1 = new Label();
             labelTimeSeconds = new Label();
-            label2 = new Label();
+            EnterHintLabel = new Label();
+            BreakerHints = new TextBox();
+            LabelGuess = new Label();
             CBContextStrip.SuspendLayout();
             CBMenuStrip.SuspendLayout();
             SuspendLayout();
             // 
-            // richTextBoxUserIn
-            // 
-            richTextBoxUserIn.Font = new Font("Segoe UI", 30F);
-            richTextBoxUserIn.Location = new Point(83, 122);
-            richTextBoxUserIn.MaxLength = 4;
-            richTextBoxUserIn.Name = "richTextBoxUserIn";
-            richTextBoxUserIn.Size = new Size(177, 80);
-            richTextBoxUserIn.TabIndex = 0;
-            richTextBoxUserIn.Text = "";
-            // 
             // btnGuess
             // 
-            btnGuess.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnGuess.Location = new Point(103, 232);
+            btnGuess.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnGuess.Location = new Point(54, 245);
             btnGuess.Name = "btnGuess";
-            btnGuess.Size = new Size(132, 70);
+            btnGuess.Size = new Size(175, 50);
             btnGuess.TabIndex = 1;
             btnGuess.Text = "Guess";
             btnGuess.UseVisualStyleBackColor = true;
@@ -157,7 +148,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
-            label1.Location = new Point(12, 335);
+            label1.Location = new Point(12, 367);
             label1.Name = "label1";
             label1.Size = new Size(150, 35);
             label1.TabIndex = 6;
@@ -167,20 +158,41 @@
             // 
             labelTimeSeconds.AutoSize = true;
             labelTimeSeconds.Font = new Font("Segoe UI", 15F);
-            labelTimeSeconds.Location = new Point(168, 335);
+            labelTimeSeconds.Location = new Point(168, 367);
             labelTimeSeconds.Name = "labelTimeSeconds";
             labelTimeSeconds.Size = new Size(81, 35);
             labelTimeSeconds.TabIndex = 7;
             labelTimeSeconds.Text = "label2";
             // 
-            // label2
+            // EnterHintLabel
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(114, 99);
-            label2.Name = "label2";
-            label2.Size = new Size(121, 20);
-            label2.TabIndex = 8;
-            label2.Text = "Enter Guess Here";
+            EnterHintLabel.AutoSize = true;
+            EnterHintLabel.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            EnterHintLabel.Location = new Point(83, 58);
+            EnterHintLabel.Name = "EnterHintLabel";
+            EnterHintLabel.Size = new Size(116, 31);
+            EnterHintLabel.TabIndex = 8;
+            EnterHintLabel.Text = "Enter Hint";
+            // 
+            // BreakerHints
+            // 
+            BreakerHints.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            BreakerHints.Location = new Point(83, 107);
+            BreakerHints.MaxLength = 4;
+            BreakerHints.Multiline = true;
+            BreakerHints.Name = "BreakerHints";
+            BreakerHints.Size = new Size(125, 38);
+            BreakerHints.TabIndex = 9;
+            // 
+            // LabelGuess
+            // 
+            LabelGuess.AutoSize = true;
+            LabelGuess.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            LabelGuess.Location = new Point(83, 181);
+            LabelGuess.Name = "LabelGuess";
+            LabelGuess.Size = new Size(108, 46);
+            LabelGuess.TabIndex = 10;
+            LabelGuess.Text = "Guess";
             // 
             // Codebreaker
             // 
@@ -189,14 +201,15 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(585, 450);
             ContextMenuStrip = CBContextStrip;
-            Controls.Add(label2);
+            Controls.Add(LabelGuess);
+            Controls.Add(BreakerHints);
+            Controls.Add(EnterHintLabel);
             Controls.Add(labelTimeSeconds);
             Controls.Add(label1);
             Controls.Add(labelGuesses);
             Controls.Add(lbGuesses);
             Controls.Add(CBMenuStrip);
             Controls.Add(btnGuess);
-            Controls.Add(richTextBoxUserIn);
             MainMenuStrip = CBMenuStrip;
             Name = "Codebreaker";
             Text = "Codebreaker";
@@ -209,8 +222,6 @@
         }
 
         #endregion
-
-        private RichTextBox richTextBoxUserIn;
         private Button btnGuess;
         private ContextMenuStrip CBContextStrip;
         private ToolStripMenuItem guessToolStripMenuItem1;
@@ -225,6 +236,8 @@
         private Label labelGuesses;
         private Label label1;
         private Label labelTimeSeconds;
-        private Label label2;
+        private Label EnterHintLabel;
+        private TextBox BreakerHints;
+        private Label LabelGuess;
     }
 }
