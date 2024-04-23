@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CIS3433;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.VisualBasic;
 using SQLData;
 
@@ -30,7 +31,14 @@ namespace AB_game
 
         private void btnGuess_Click(object sender, EventArgs e)
         {
-            validateUserGuess();
+            if (!(usercode is null))
+            {
+                validateUserGuess();
+            }
+            else
+            {
+                MessageBox.Show("There is no code to break, please try again");
+            }
         }
 
         private void validateUserGuess()
