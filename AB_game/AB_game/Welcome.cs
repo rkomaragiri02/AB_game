@@ -32,7 +32,7 @@ namespace AB_game
 
         private void btnCodebreaker_Click(object sender, EventArgs e)
         {
-            Codebreaker codebreakerForm = new Codebreaker(code);
+            Codebreaker codebreakerForm = new Codebreaker(textBoxPlayerName.Text);
             codebreakerForm.ShowDialog();
         }
 

@@ -20,15 +20,20 @@ namespace AB_game
     {
         public static string userGuess;
         string guess = null;
+        string playerName;
         static Random rand = new Random();
         List<string> guessList;
         int numGuesses;
-        public Codebreaker(string code)
+        int currentSessionID = DatabaseHelpers.getSessionID(DBInfo.dbConnString) + 2;
+        private List<SessionDataPoint> sessionDataPoints = new List<SessionDataPoint>();
+
+        public Codebreaker(string playerName)
         {
             InitializeComponent();
             this.guessList = CodebreakerHelper.GenerateGuessList();
             labelPossibleGuesses.Text = 0.ToString();
             numGuesses = 1;
+            this.playerName = playerName;
         }
 
         private void GenerateGuess()
@@ -70,6 +75,9 @@ namespace AB_game
             //MessageBox.Show($"Guess: {numGuesses} - {nextGuess}. Possible Guesses: {guessList.Count}");
             LabelGuess.Text = nextGuess.ToString();
             labelPossibleGuesses.Text = guessList.Count.ToString();
+
+            sessionDataPoints.Add(new SessionDataPoint(currentSessionID, nextGuess, BreakerHints.Text));
+
 
             if (guessList.Count == 1)
                 return;
@@ -120,7 +128,13 @@ namespace AB_game
 
         private void guessToolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            GenerateGuess()
+            GenerateGuess();
+        }
+
+        private void buttonFinish_Click(object sender, EventArgs e)
+        {
+            DatabaseHelpers.insertCodebreakerSession(DBInfo.dbConnString, "----", playerName, -1, -1, -1);
+            DatabaseHelpers.logSessionDataPoints(DBInfo.dbConnString, sessionDataPoints);
         }
     }
 }

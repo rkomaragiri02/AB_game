@@ -69,7 +69,7 @@ namespace CIS3433
         public static int getSessionID(string connString)
         {
             SqlConnection conn = new SqlConnection(connString);
-            string query = "SELECT COUNT(session_id) from game_data;";
+            string query = "SELECT TOP 1 session_id from game_data Order By session_id Desc;";
             SqlCommand cmd = new SqlCommand(query, conn);
             conn.Open();
             SqlDataReader reader = cmd.ExecuteReader();

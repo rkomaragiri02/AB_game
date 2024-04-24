@@ -39,13 +39,12 @@
             guessToolStripMenuItem = new ToolStripMenuItem();
             exitToolStripMenuItem1 = new ToolStripMenuItem();
             timerGame = new System.Windows.Forms.Timer(components);
-            lbGuesses = new ListBox();
-            titleGuesses = new Label();
             label1 = new Label();
             labelPossibleGuesses = new Label();
             EnterHintLabel = new Label();
             BreakerHints = new TextBox();
             LabelGuess = new Label();
+            buttonFinish = new Button();
             CBContextStrip.SuspendLayout();
             CBMenuStrip.SuspendLayout();
             SuspendLayout();
@@ -53,7 +52,7 @@
             // btnGuess
             // 
             btnGuess.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnGuess.Location = new Point(54, 245);
+            btnGuess.Location = new Point(27, 245);
             btnGuess.Name = "btnGuess";
             btnGuess.Size = new Size(175, 77);
             btnGuess.TabIndex = 1;
@@ -66,27 +65,27 @@
             CBContextStrip.ImageScalingSize = new Size(20, 20);
             CBContextStrip.Items.AddRange(new ToolStripItem[] { guessToolStripMenuItem1 });
             CBContextStrip.Name = "contextMenuStrip1";
-            CBContextStrip.Size = new Size(211, 56);
+            CBContextStrip.Size = new Size(128, 28);
             CBContextStrip.Opening += CBContextStrip_Opening;
             // 
             // guessToolStripMenuItem1
             // 
             guessToolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { guessToolStripMenuItem2, exitToolStripMenuItem });
             guessToolStripMenuItem1.Name = "guessToolStripMenuItem1";
-            guessToolStripMenuItem1.Size = new Size(210, 24);
+            guessToolStripMenuItem1.Size = new Size(127, 24);
             guessToolStripMenuItem1.Text = "Actions";
             // 
             // guessToolStripMenuItem2
             // 
             guessToolStripMenuItem2.Name = "guessToolStripMenuItem2";
-            guessToolStripMenuItem2.Size = new Size(224, 26);
+            guessToolStripMenuItem2.Size = new Size(194, 26);
             guessToolStripMenuItem2.Text = "Generate Guess";
             guessToolStripMenuItem2.Click += guessToolStripMenuItem2_Click;
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(130, 26);
+            exitToolStripMenuItem.Size = new Size(194, 26);
             exitToolStripMenuItem.Text = "Exit";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
@@ -96,7 +95,7 @@
             CBMenuStrip.Items.AddRange(new ToolStripItem[] { actionsToolStripMenuItem });
             CBMenuStrip.Location = new Point(0, 0);
             CBMenuStrip.Name = "CBMenuStrip";
-            CBMenuStrip.Size = new Size(585, 28);
+            CBMenuStrip.Size = new Size(426, 28);
             CBMenuStrip.TabIndex = 3;
             CBMenuStrip.Text = "menuStrip1";
             CBMenuStrip.ItemClicked += CBMenuStrip_ItemClicked;
@@ -111,14 +110,14 @@
             // guessToolStripMenuItem
             // 
             guessToolStripMenuItem.Name = "guessToolStripMenuItem";
-            guessToolStripMenuItem.Size = new Size(224, 26);
+            guessToolStripMenuItem.Size = new Size(194, 26);
             guessToolStripMenuItem.Text = "Generate Guess";
             guessToolStripMenuItem.Click += guessToolStripMenuItem_Click;
             // 
             // exitToolStripMenuItem1
             // 
             exitToolStripMenuItem1.Name = "exitToolStripMenuItem1";
-            exitToolStripMenuItem1.Size = new Size(224, 26);
+            exitToolStripMenuItem1.Size = new Size(194, 26);
             exitToolStripMenuItem1.Text = "Exit";
             exitToolStripMenuItem1.Click += exitToolStripMenuItem1_Click;
             // 
@@ -127,29 +126,11 @@
             timerGame.Interval = 1000;
             timerGame.Tick += timerGame_Tick;
             // 
-            // lbGuesses
-            // 
-            lbGuesses.FormattingEnabled = true;
-            lbGuesses.Location = new Point(358, 58);
-            lbGuesses.Name = "lbGuesses";
-            lbGuesses.Size = new Size(215, 344);
-            lbGuesses.TabIndex = 4;
-            // 
-            // titleGuesses
-            // 
-            titleGuesses.AutoSize = true;
-            titleGuesses.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            titleGuesses.Location = new Point(438, 35);
-            titleGuesses.Name = "titleGuesses";
-            titleGuesses.Size = new Size(66, 20);
-            titleGuesses.TabIndex = 5;
-            titleGuesses.Text = "Guesses";
-            // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
-            label1.Location = new Point(12, 367);
+            label1.Location = new Point(64, 363);
             label1.Name = "label1";
             label1.Size = new Size(211, 35);
             label1.TabIndex = 6;
@@ -159,7 +140,7 @@
             // 
             labelPossibleGuesses.AutoSize = true;
             labelPossibleGuesses.Font = new Font("Segoe UI", 15F);
-            labelPossibleGuesses.Location = new Point(229, 367);
+            labelPossibleGuesses.Location = new Point(281, 363);
             labelPossibleGuesses.Name = "labelPossibleGuesses";
             labelPossibleGuesses.Size = new Size(28, 35);
             labelPossibleGuesses.TabIndex = 7;
@@ -169,7 +150,7 @@
             // 
             EnterHintLabel.AutoSize = true;
             EnterHintLabel.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            EnterHintLabel.Location = new Point(83, 58);
+            EnterHintLabel.Location = new Point(150, 58);
             EnterHintLabel.Name = "EnterHintLabel";
             EnterHintLabel.Size = new Size(116, 31);
             EnterHintLabel.TabIndex = 8;
@@ -178,7 +159,7 @@
             // BreakerHints
             // 
             BreakerHints.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            BreakerHints.Location = new Point(83, 107);
+            BreakerHints.Location = new Point(150, 107);
             BreakerHints.MaxLength = 4;
             BreakerHints.Multiline = true;
             BreakerHints.Name = "BreakerHints";
@@ -189,26 +170,36 @@
             // 
             LabelGuess.AutoSize = true;
             LabelGuess.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            LabelGuess.Location = new Point(108, 182);
+            LabelGuess.Location = new Point(175, 182);
             LabelGuess.Name = "LabelGuess";
             LabelGuess.Size = new Size(68, 46);
             LabelGuess.TabIndex = 10;
             LabelGuess.Text = "Init";
+            // 
+            // buttonFinish
+            // 
+            buttonFinish.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            buttonFinish.Location = new Point(230, 245);
+            buttonFinish.Name = "buttonFinish";
+            buttonFinish.Size = new Size(175, 77);
+            buttonFinish.TabIndex = 11;
+            buttonFinish.Text = "Finish";
+            buttonFinish.UseVisualStyleBackColor = true;
+            buttonFinish.Click += buttonFinish_Click;
             // 
             // Codebreaker
             // 
             AcceptButton = btnGuess;
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(585, 450);
+            ClientSize = new Size(426, 450);
             ContextMenuStrip = CBContextStrip;
+            Controls.Add(buttonFinish);
             Controls.Add(LabelGuess);
             Controls.Add(BreakerHints);
             Controls.Add(EnterHintLabel);
             Controls.Add(labelPossibleGuesses);
             Controls.Add(label1);
-            Controls.Add(titleGuesses);
-            Controls.Add(lbGuesses);
             Controls.Add(CBMenuStrip);
             Controls.Add(btnGuess);
             MainMenuStrip = CBMenuStrip;
@@ -233,12 +224,11 @@
         private ToolStripMenuItem exitToolStripMenuItem;
         private ToolStripMenuItem exitToolStripMenuItem1;
         private System.Windows.Forms.Timer timerGame;
-        private ListBox lbGuesses;
-        private Label titleGuesses;
         private Label label1;
         private Label labelPossibleGuesses;
         private Label EnterHintLabel;
         private TextBox BreakerHints;
         private Label LabelGuess;
+        private Button buttonFinish;
     }
 }
