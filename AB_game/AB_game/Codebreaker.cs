@@ -135,6 +135,7 @@ namespace AB_game
         {
             DatabaseHelpers.insertCodebreakerSession(DBInfo.dbConnString, "----", playerName, -1, -1, -1);
             DatabaseHelpers.logSessionDataPoints(DBInfo.dbConnString, sessionDataPoints);
+            this.Close();
         }
     }
 }
