@@ -40,7 +40,7 @@
             exitToolStripMenuItem1 = new ToolStripMenuItem();
             timerGame = new System.Windows.Forms.Timer(components);
             lbGuesses = new ListBox();
-            labelGuesses = new Label();
+            titleGuesses = new Label();
             label1 = new Label();
             labelTimeSeconds = new Label();
             EnterHintLabel = new Label();
@@ -134,15 +134,15 @@
             lbGuesses.Size = new Size(215, 344);
             lbGuesses.TabIndex = 4;
             // 
-            // labelGuesses
+            // titleGuesses
             // 
-            labelGuesses.AutoSize = true;
-            labelGuesses.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            labelGuesses.Location = new Point(396, 35);
-            labelGuesses.Name = "labelGuesses";
-            labelGuesses.Size = new Size(66, 20);
-            labelGuesses.TabIndex = 5;
-            labelGuesses.Text = "Guesses";
+            titleGuesses.AutoSize = true;
+            titleGuesses.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            titleGuesses.Location = new Point(396, 35);
+            titleGuesses.Name = "titleGuesses";
+            titleGuesses.Size = new Size(66, 20);
+            titleGuesses.TabIndex = 5;
+            titleGuesses.Text = "Guesses";
             // 
             // label1
             // 
@@ -188,11 +188,11 @@
             // 
             LabelGuess.AutoSize = true;
             LabelGuess.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            LabelGuess.Location = new Point(83, 181);
+            LabelGuess.Location = new Point(108, 182);
             LabelGuess.Name = "LabelGuess";
-            LabelGuess.Size = new Size(108, 46);
+            LabelGuess.Size = new Size(68, 46);
             LabelGuess.TabIndex = 10;
-            LabelGuess.Text = "Guess";
+            LabelGuess.Text = "Init";
             // 
             // Codebreaker
             // 
@@ -206,7 +206,7 @@
             Controls.Add(EnterHintLabel);
             Controls.Add(labelTimeSeconds);
             Controls.Add(label1);
-            Controls.Add(labelGuesses);
+            Controls.Add(titleGuesses);
             Controls.Add(lbGuesses);
             Controls.Add(CBMenuStrip);
             Controls.Add(btnGuess);
@@ -233,7 +233,7 @@
         private ToolStripMenuItem exitToolStripMenuItem1;
         private System.Windows.Forms.Timer timerGame;
         private ListBox lbGuesses;
-        private Label labelGuesses;
+        private Label titleGuesses;
         private Label label1;
         private Label labelTimeSeconds;
         private Label EnterHintLabel;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -74,14 +75,24 @@ namespace AB_game
             Application.Exit();
         }
 
+        //added some input validation here
         private void textBoxPlayerName_TextChanged(object sender, EventArgs e)
         {
+            if (textBoxPlayerName.Text.Trim() == "")
+            {
+                btnCodebreaker.Enabled = false;
+                btnCodemaker.Enabled = false;
+            }
+            else
+            {
             btnCodemaker.Enabled = textBoxPlayerName.Text.Length > 0;
             btnCodebreaker.Enabled = textBoxPlayerName.Text.Length > 0;
             codebreakerToolStripMenuItem.Enabled = textBoxPlayerName.Text.Length > 0;
             codemakerToolStripMenuItem.Enabled = textBoxPlayerName.Text.Length > 0;
             codebreakerToolStripMenuItem1.Enabled = textBoxPlayerName.Text.Length > 0;
             codemakerToolStripMenuItem1.Enabled = textBoxPlayerName.Text.Length > 0;
+            }
+            
         }
     }
 }
