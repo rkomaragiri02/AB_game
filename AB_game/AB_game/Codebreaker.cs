@@ -120,7 +120,7 @@ namespace AB_game
 
         private void guessToolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            GenerateGuess()
+            GenerateGuess();
         }
     }
 }
