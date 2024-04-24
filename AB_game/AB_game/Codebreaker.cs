@@ -19,83 +19,69 @@ namespace AB_game
     public partial class Codebreaker : Form
     {
         public static string userGuess;
-        int tries;
-        string usercode;
-        int totalSeconds;
+        string guess = null;
+        static Random rand = new Random();
+        List<string> guessList;
+        int numGuesses;
         public Codebreaker(string code)
         {
             InitializeComponent();
-            this.tries = 0;
-            this.usercode = code;
-            totalSeconds = 0;
+            this.guessList = CodebreakerHelper.GenerateGuessList();
+            labelPossibleGuesses.Text = 0.ToString();
+            numGuesses = 1;
+        }
+
+        private void GenerateGuess()
+        {
+            string firstGuess = guessList[rand.Next(guessList.Count)];
+
+            if (numGuesses > 1)
+            {
+                if (BreakerHints.Text.Trim().Length != 4)
+                {
+                    MessageBox.Show("A proper hint is needed");
+                    return;
+                }
+                //string hint = Interaction.InputBox("");
+                string hint = BreakerHints.Text;
+                int A;
+                int B;
+
+                A = hint[0] - '0';
+                B = hint[2] - '0';
+
+                if (A == 4) return;
+
+                List<string> guessList_ = new List<string>(guessList.Count);
+
+                foreach (var item in guessList)
+                {
+                    if (CodebreakerHelper.codeMatch(item, guess, A, B))
+                        guessList_.Add(item);
+                }
+                guessList = guessList_;
+            }
+
+            string nextGuess = null;
+            if (numGuesses == 1)
+                nextGuess = firstGuess;
+            else nextGuess = guessList[rand.Next(guessList.Count)];
+
+            //MessageBox.Show($"Guess: {numGuesses} - {nextGuess}. Possible Guesses: {guessList.Count}");
+            LabelGuess.Text = nextGuess.ToString();
+            labelPossibleGuesses.Text = guessList.Count.ToString();
+
+            if (guessList.Count == 1)
+                return;
+
+            guess = nextGuess;
+            numGuesses++;
         }
 
         private void btnGuess_Click(object sender, EventArgs e)
         {
-            if (BreakerHints.Text.Trim().Length != 4)
-            {
-                MessageBox.Show("A proper hint is needed");
-            }
-
+            GenerateGuess();
         }
-        //blog conversion begins here, i kept it mostly the same except changing keywords and removing operations thatt arent in c#
-        public static bool Break(char[] code, char[] guess, int A, int B)
-        {
-             int a = 0;
-             int b = 0;
-            Random random = new Random();;
-            for (int i = 0; i < 4; i++) 
-            {
-                if (code[i] == guess[i])
-                {
-                    A++;
-                }
-                else
-                {
-                    for (int j =0; j < 4; j++)
-                    {
-                        if (i != j && code[j] == guess[i] && code[j] != guess[j])
-                        {
-                            B++;
-                            break;
-                        }
-                    }
-                }
-            }
-            return a == A && b == B;
-
-        } 
-        //different combinations are generated in this block
-        public static void Generate(string[] args)
-        {
-            Random random = new Random();
-            List<char[]> guessList = new List<char[]>(10000);
-
-            for (int i = 0; i <= 9999; i++)
-            {
-                string intstring = i.ToString();
-                while (intstring.Length != 4)
-                {
-                    intstring = "0" + intstring;
-                }
-
-                char a = intstring[0];
-                char b = intstring[1];
-                char c = intstring[2];
-                char d = intstring[3];
-                bool notUnique = a==b || a==c || a==d|| b==c || b==d;
-
-                if (notUnique)
-                {
-                    continue;
-                }
-
-                char[]intarray = intstring.ToCharArray();
-                guessList.Add(intarray);
-
-            }
-        }
-
 
         private void CBContextStrip_Opening(object sender, CancelEventArgs e)
         {
@@ -119,18 +105,22 @@ namespace AB_game
 
         private void guessToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            GenerateGuess();
         }
 
         private void Codebreaker_Load(object sender, EventArgs e)
         {
-            timerGame.Enabled = true;
         }
 
         private void timerGame_Tick(object sender, EventArgs e)
         {
-            totalSeconds++;
-            labelTimeSeconds.Text = totalSeconds.ToString();
+            //totalSeconds++;
+            //labelTimeSeconds.Text = totalSeconds.ToString();
+        }
+
+        private void guessToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            GenerateGuess()
         }
     }
 }

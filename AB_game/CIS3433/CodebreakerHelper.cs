@@ -16,18 +16,61 @@ namespace CIS3433
             return gameScore;
         }
 
-        public static bool codeMatch(string c1, string c2, int ACount, int BCount)
+        public static bool codeMatch(string code, string guess, int A, int B)
         {
             int a = 0;
             int b = 0;
-
             for (int i = 0; i < 4; i++)
             {
-                if (c1[i] == c2[i]) a++;
-                else if (c2.Contains(c1[i]) && c2[i] != c1[i]) b++;
+                if (code[i] == guess[i])
+                {
+                    a++;
+                }
+                else
+                {
+                    for (int j = 0; j < 4; j++)
+                    {
+                        if (i != j && code[j] == guess[i] && code[j] != guess[j])
+                        {
+                            b++;
+                            break;
+                        }
+                    }
+                }
+            }
+            return a == A && b == B;
+        }
+
+        public static List<string> GenerateGuessList()
+        {
+            Random random = new Random();
+            List<string> guessList = new List<string>(10000);
+
+            for (int i = 0; i <= 9999; i++)
+            {
+                string intstring = i.ToString();
+                while (intstring.Length != 4)
+                {
+                    intstring = "0" + intstring;
+                }
+
+                char a = intstring[0];
+                char b = intstring[1];
+                char c = intstring[2];
+                char d = intstring[3];
+                bool notUnique = a == b || a == c || a == d || b == c || b == d || c == d;
+
+                if (notUnique)
+                {
+                    continue;
+                }
+
+                string intarray = intstring.ToString();
+                guessList.Add(intarray);
+
             }
 
-            return a == ACount && b == BCount;
+            return guessList;
         }
     }
 }
