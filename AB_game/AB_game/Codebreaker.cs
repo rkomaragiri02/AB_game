@@ -38,7 +38,7 @@ namespace AB_game
             }
 
         }
-        //blog conversion begins here, i kept it mostly the same except changing keywords and removing operations that arent in c#
+        //blog conversion begins here, i kept it mostly the same except changing keywords and removing operations thatt arent in c#
         public static bool Break(char[] code, char[] guess, int A, int B)
         {
              int a = 0;
