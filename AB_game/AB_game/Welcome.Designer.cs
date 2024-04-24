@@ -46,6 +46,7 @@
             exitToolStripMenuItem1 = new ToolStripMenuItem();
             label5 = new Label();
             textBoxPlayerName = new TextBox();
+            buttonGameData = new Button();
             WelcMenuStrip.SuspendLayout();
             WelcContMenuStrip.SuspendLayout();
             SuspendLayout();
@@ -199,12 +200,23 @@
             textBoxPlayerName.TabIndex = 8;
             textBoxPlayerName.TextChanged += textBoxPlayerName_TextChanged;
             // 
+            // buttonGameData
+            // 
+            buttonGameData.Location = new Point(231, 299);
+            buttonGameData.Name = "buttonGameData";
+            buttonGameData.Size = new Size(94, 29);
+            buttonGameData.TabIndex = 9;
+            buttonGameData.Text = "Game Data";
+            buttonGameData.UseVisualStyleBackColor = true;
+            buttonGameData.Click += buttonGameData_Click;
+            // 
             // Welcome
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(564, 392);
             ContextMenuStrip = WelcContMenuStrip;
+            Controls.Add(buttonGameData);
             Controls.Add(textBoxPlayerName);
             Controls.Add(label5);
             Controls.Add(btnCodebreaker);
@@ -243,5 +255,6 @@
         private ToolStripMenuItem exitToolStripMenuItem1;
         private Label label5;
         private TextBox textBoxPlayerName;
+        private Button buttonGameData;
     }
 }

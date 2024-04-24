@@ -85,14 +85,20 @@ namespace AB_game
             }
             else
             {
-            btnCodemaker.Enabled = textBoxPlayerName.Text.Length > 0;
-            btnCodebreaker.Enabled = textBoxPlayerName.Text.Length > 0;
-            codebreakerToolStripMenuItem.Enabled = textBoxPlayerName.Text.Length > 0;
-            codemakerToolStripMenuItem.Enabled = textBoxPlayerName.Text.Length > 0;
-            codebreakerToolStripMenuItem1.Enabled = textBoxPlayerName.Text.Length > 0;
-            codemakerToolStripMenuItem1.Enabled = textBoxPlayerName.Text.Length > 0;
+                btnCodemaker.Enabled = textBoxPlayerName.Text.Length > 0;
+                btnCodebreaker.Enabled = textBoxPlayerName.Text.Length > 0;
+                codebreakerToolStripMenuItem.Enabled = textBoxPlayerName.Text.Length > 0;
+                codemakerToolStripMenuItem.Enabled = textBoxPlayerName.Text.Length > 0;
+                codebreakerToolStripMenuItem1.Enabled = textBoxPlayerName.Text.Length > 0;
+                codemakerToolStripMenuItem1.Enabled = textBoxPlayerName.Text.Length > 0;
             }
-            
+
+        }
+
+        private void buttonGameData_Click(object sender, EventArgs e)
+        {
+            GameData gameData = new GameData();
+            gameData.ShowDialog();
         }
     }
 }

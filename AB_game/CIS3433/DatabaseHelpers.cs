@@ -2,10 +2,13 @@
 using Microsoft.Data.SqlClient;
 using System.Data;
 
+
 namespace CIS3433
 {
     public class DatabaseHelpers
     {
+        
+
         public static void insertCodemakerSession(string connString, string code, string codemakerName, int totalTries, int gameScore, int totalSeconds)
         {
             SqlConnection conn = new SqlConnection(connString);
