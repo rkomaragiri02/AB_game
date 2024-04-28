@@ -24,7 +24,7 @@ namespace AB_game
         static Random rand = new Random();
         List<string> guessList;
         int numGuesses;
-        int currentSessionID = DatabaseHelpers.getSessionID(DBInfo.dbConnString) + 2;
+        int currentSessionID = DatabaseHelpers.getSessionID(DBInfo.dbConnString) + 1;
         private List<SessionDataPoint> sessionDataPoints = new List<SessionDataPoint>();
 
         public Codebreaker(string playerName)
@@ -133,7 +133,8 @@ namespace AB_game
 
         private void buttonFinish_Click(object sender, EventArgs e)
         {
-            DatabaseHelpers.insertCodebreakerSession(DBInfo.dbConnString, "----", playerName, -1, -1, -1);
+            int scoreFromMaker = int.Parse(Interaction.InputBox("Enter the score you got from Codemaker"));
+            DatabaseHelpers.insertCodebreakerSession(DBInfo.dbConnString, "----", playerName, -1, scoreFromMaker, -1);
             DatabaseHelpers.logSessionDataPoints(DBInfo.dbConnString, sessionDataPoints);
             this.Close();
         }

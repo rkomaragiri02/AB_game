@@ -213,9 +213,9 @@
             label3.AutoSize = true;
             label3.Location = new Point(638, 154);
             label3.Name = "label3";
-            label3.Size = new Size(132, 20);
+            label3.Size = new Size(137, 20);
             label3.TabIndex = 12;
-            label3.Text = "Guesses remaining";
+            label3.Text = "Number of Guesses";
             // 
             // timerGame
             // 

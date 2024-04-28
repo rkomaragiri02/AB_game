@@ -107,13 +107,13 @@ namespace AB_game
             }
             tries++;
             userGuess = textBoxUserGuess.Text;
-            labelGuessesRemaining.Text = (10 - tries).ToString();
-            if (tries == 10 && usercode != userGuess)
-            {
-                timerGame.Enabled = false;
-                MessageBox.Show("Thats it! Out of tries!");
-                this.Close();
-            }
+            labelGuessesRemaining.Text = (tries).ToString();
+            //if (tries == 10 && usercode != userGuess)
+            //{
+            //    timerGame.Enabled = false;
+            //    MessageBox.Show("Thats it! Out of tries!");
+            //    this.Close();
+            //}
             Compare(currentSessionID);
             if (usercode == userGuess)
             {
@@ -232,6 +232,7 @@ namespace AB_game
         private void setCodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //Clone of SetCode button logic
+            setCode();
         }
 
         private void randomiseToolStripMenuItem_Click(object sender, EventArgs e)

@@ -38,6 +38,7 @@
             dataGridViewGameHistory.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewGameHistory.Location = new Point(12, 71);
             dataGridViewGameHistory.Name = "dataGridViewGameHistory";
+            dataGridViewGameHistory.ReadOnly = true;
             dataGridViewGameHistory.RowHeadersWidth = 51;
             dataGridViewGameHistory.Size = new Size(1009, 367);
             dataGridViewGameHistory.TabIndex = 0;
